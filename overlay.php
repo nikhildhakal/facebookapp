@@ -52,6 +52,43 @@ $fb = new Facebook\Facebook([
 
 <?php include_once('includes/header.php'); ?>
 
-<img src="output/<?php echo $profile['id']; ?>.jpg" width="280" height="280" alt="campaign image">
+<div class="content">
+
+  <div class="left_content">
+    <h4 align="center">
+      <?php
+  $myfile = fopen("src/campaign.txt", "r") or die("Unable to open file!");
+  echo fread($myfile,filesize("src/campaign.txt"));
+  fclose($myfile);
+  ?>
+      </h4>
+
+      <div class="button-wrapper" align="center" >
+      Yo
+      </div>
+      <div class="start" align="center">
+      <!-- <img src="output/<?php echo $fbid;?>.jpg" width="280" height="280" alt="campaign image"> -->
+      <img src="output/<?php echo $profile['id']; ?>.jpg" width="280" height="280" alt="campaign image">
+      </div>
+
+  </div>
+   <div class="right_content">
+    <div class="artha">
+    <a target="_blank"  href="http://www.arthasarokar.com/">
+    <img src="img/artha.png" alt="image block" style="width:100%; height:130px;"/>
+    </a>
+    </div>
+  </div>
+   <div class="right_content">
+    <div class="behuli">
+    <a target="_blank"  href="http://www.e-behuli.com/">
+    <img src="img/behuli.png" alt="behuli block" style="width:100%; height:196px;"/>
+    </a>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+</div>
+
 
 <?php include_once('includes/footer.php'); ?>
