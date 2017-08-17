@@ -34,6 +34,7 @@ $fb = new Facebook\Facebook([
 
   // echo "Name:".$profile['name'];
   // saving picture
+  // echo $profile['id'];
 	$img = __DIR__.'/avatar/'.$profile['id'].'.jpg';
 	file_put_contents($img, file_get_contents($picture['url']));
 
@@ -48,46 +49,42 @@ $fb = new Facebook\Facebook([
   imagecopyresampled($out, $png, 0, 0, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
   imagejpeg($out, 'output/'.$profile['id'].'.jpg', 100);
 
+  $path = 'output/'.$profile['id'].".jpg";
+  $_SESSION['path'] = $path;
+  // $_SESSION['FBID'] = $profile['id'];
+  // var_dump($path);
+
 ?>
 
 <?php include_once('includes/header.php'); ?>
 
-<div class="content">
+<div class="content" align="center">
+  <h4>Your Picture is Ready</h4>
+  <img src="output/<?php echo $profile['id']; ?>.jpg" alt="Campaign Image" width="400px" height="500px">
+  <br>
+  <!-- <button type="button" name="button" class="btn btn-large btn-primary">Post on timeline</button> -->
+  <hr>
+  <form class="form" action="update.php" method="post">
+      <label for="status" class="form-control"><h4>Status:</h4></label>
+      <textarea name="text" rows="5" cols="100" class="" style="margin: 0px 0px 10px; width: 390px; height: 123px;"></textarea><br>
+      <input class="btn btn-primary" value="Post on your timeline" type="submit">
+  </form>
+<?php
+  // try {
+		// message must come from the user-end
+    // $data = ['source' => $fb->fileToUpload(__DIR__.'/output/'.$profile['id'].".jpg"), 'message' => 'my photo'];
+		// $request = $fb->post('/me/photos', $data, $token);
 
-  <div class="left_content">
-    <h4 align="center">
-      <?php
-  $myfile = fopen("src/campaign.txt", "r") or die("Unable to open file!");
-  echo fread($myfile,filesize("src/campaign.txt"));
-  fclose($myfile);
+	// } catch(Facebook\Exceptions\FacebookResponseException $e) {
+	// 	// When Graph returns an error
+	// 	echo 'Graph returned an error: ' . $e->getMessage();
+	// 	exit;
+	// } catch(Facebook\Exceptions\FacebookSDKException $e) {
+	// 	// When validation fails or other local issues
+	// 	echo 'Facebook SDK returned an error: ' . $e->getMessage();
+	// 	exit;
+	// }
   ?>
-      </h4>
-
-      <div class="button-wrapper" align="center" >
-      Yo
-      </div>
-      <div class="start" align="center">
-      <!-- <img src="output/<?php echo $fbid;?>.jpg" width="280" height="280" alt="campaign image"> -->
-      <img src="output/<?php echo $profile['id']; ?>.jpg" width="280" height="280" alt="campaign image">
-      </div>
-
-  </div>
-   <div class="right_content">
-    <div class="artha">
-    <a target="_blank"  href="http://www.arthasarokar.com/">
-    <img src="img/artha.png" alt="image block" style="width:100%; height:130px;"/>
-    </a>
-    </div>
-  </div>
-   <div class="right_content">
-    <div class="behuli">
-    <a target="_blank"  href="http://www.e-behuli.com/">
-    <img src="img/behuli.png" alt="behuli block" style="width:100%; height:196px;"/>
-    </a>
-    </div>
-  </div>
-
-  <div class="clearfix"></div>
 </div>
 
 
