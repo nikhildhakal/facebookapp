@@ -15,6 +15,7 @@
 <meta property="og:image"         content="localhost/facebook/img/campaign.png" />
 <link rel="stylesheet" href="style.css">
 <link href="http://www.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<!-- <script src="/facebook/js/fb.js" async="async"></script> -->
 </head>
 <body>
 <!--  After user login  -->

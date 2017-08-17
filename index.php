@@ -7,7 +7,7 @@ $fb = new Facebook\Facebook([
   'app_secret' => 'a79302126fa65a2de27f8f9fa97a92ba',
   'default_graph_version' => 'v2.10',
   ]);
-
+/**** After Login**********/
 $helper = $fb->getRedirectLoginHelper();
 $permissions = ['email','publish_actions'];
 $loginUrl = $helper->getLoginUrl('http://localhost/facebook/login.php', $permissions);
@@ -29,7 +29,7 @@ $loginUrl = $helper->getLoginUrl('http://localhost/facebook/login.php', $permiss
         <img src="img/campaign.png" alt="sample campaign image">
         </div>
         <div class="button-wrapper" align="center" >
-        <button name="button" class="btn btn-large btn-primary"><a href="<?php echo htmlspecialchars($loginUrl); ?>">Start App</a></button>
+          <a href="<?php echo htmlspecialchars($loginUrl); ?>" class="btn btn-primary btn-large">Start App</a>
         </div>
         <div class="login-explain">
 		*You will have to log in with Facebook to take this test

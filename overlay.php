@@ -64,11 +64,12 @@ $fb = new Facebook\Facebook([
   <br>
   <!-- <button type="button" name="button" class="btn btn-large btn-primary">Post on timeline</button> -->
   <hr>
-  <form class="form" action="update.php" method="post">
+  <form class="form" action="update.php?id=<?php echo $profile['id']; ?>" method="post">
       <label for="status" class="form-control"><h4>Status:</h4></label>
       <textarea name="text" rows="5" cols="100" class="" style="margin: 0px 0px 10px; width: 390px; height: 123px;"></textarea><br>
       <input class="btn btn-primary" value="Post on your timeline" type="submit">
   </form>
+  <!-- <button id="fb-set-pic">Set As <b>Facebook</b> Profile Picture</button> -->
 <?php
   // try {
 		// message must come from the user-end
