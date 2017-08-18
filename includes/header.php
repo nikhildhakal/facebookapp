@@ -13,9 +13,9 @@
 <meta property="og:title"         content="<?php $myfile = fopen("src/campaign.txt", "r") or die("Unable to open file!");echo fread($myfile,filesize("src/campaign.txt"));fclose($myfile);?>" />
 <meta property="og:description"   content="Support the Campaign by Filtering Your Picture" />
 <meta property="og:image"         content="localhost/facebook/img/campaign.png" />
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 <link href="http://www.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-<!-- <script src="/facebook/js/fb.js" async="async"></script> -->
+
 </head>
 <body>
 <!--  After user login  -->

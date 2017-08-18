@@ -2,6 +2,9 @@
 session_start();
 require( __DIR__.'/src/Facebook/autoload.php' );
 
+// $overlay = $_POST['image'];
+// $_SESSION['overlay'] = $overlay;
+
 $fb = new Facebook\Facebook([
   'app_id' => '311560492587109', // Replace {app-id} with your app id
   'app_secret' => 'a79302126fa65a2de27f8f9fa97a92ba',

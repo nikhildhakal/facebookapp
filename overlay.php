@@ -10,6 +10,10 @@ $fb = new Facebook\Facebook([
 
 
   $token = $_SESSION['facebook_access_token'];
+  $imageSelected = $_SESSION['IMAGE'];
+  $mark = "mark-$imageSelected.png";
+  // echo $imageSelected;
+  // $overlay = $_SESSION['overlay']; echo $overlay;
 
   /****************Getting basic/profile info using crul***************/
 
@@ -29,21 +33,16 @@ $fb = new Facebook\Facebook([
 		exit;
 	}
 
-	// showing picture on the screen
-	// echo "<img src='".$picture['url']."'/>";
-
-  // echo "Name:".$profile['name'];
-  // saving picture
-  // echo $profile['id'];
+  //Store image in the directory
 	$img = __DIR__.'/avatar/'.$profile['id'].'.jpg';
 	file_put_contents($img, file_get_contents($picture['url']));
 
   //Attempt merging of the overlay with the profile image
 
   $jpeg = imagecreatefromjpeg('avatar/'.$profile['id'].'.jpg');
-  $png = imagecreatefrompng('overlay/mark.png');
+  $png = imagecreatefrompng('overlay/'.$mark);
   list($width, $height) = getimagesize('avatar/'.$profile['id'].'.jpg');
-  list($newwidth, $newheight) = getimagesize('overlay/mark.png');
+  list($newwidth, $newheight) = getimagesize('overlay/'.$mark);
   $out = imagecreatetruecolor($newwidth, $newheight);
   imagecopyresampled($out, $jpeg, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
   imagecopyresampled($out, $png, 0, 0, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
@@ -59,33 +58,21 @@ $fb = new Facebook\Facebook([
 <?php include_once('includes/header.php'); ?>
 
 <div class="content" align="center">
-  <h4>Your Picture is Ready</h4>
-  <img src="output/<?php echo $profile['id']; ?>.jpg" alt="Campaign Image" width="400px" height="500px">
-  <br>
-  <!-- <button type="button" name="button" class="btn btn-large btn-primary">Post on timeline</button> -->
-  <hr>
-  <form class="form" action="update.php?id=<?php echo $profile['id']; ?>" method="post">
-      <label for="status" class="form-control"><h4>Status:</h4></label>
-      <textarea name="text" rows="5" cols="100" class="" style="margin: 0px 0px 10px; width: 390px; height: 123px;"></textarea><br>
-      <input class="btn btn-primary" value="Post on your timeline" type="submit">
-  </form>
-  <!-- <button id="fb-set-pic">Set As <b>Facebook</b> Profile Picture</button> -->
-<?php
-  // try {
-		// message must come from the user-end
-    // $data = ['source' => $fb->fileToUpload(__DIR__.'/output/'.$profile['id'].".jpg"), 'message' => 'my photo'];
-		// $request = $fb->post('/me/photos', $data, $token);
+  <div class="row">
+      <div class="col-md-6">
+        <h4>Your Picture is Ready</h4>
+        <img src="output/<?php echo $profile['id']; ?>.jpg" alt="Campaign Image" width="400px" height="500px">
+        <br>
+        <form class="form" action="update.php?id=<?php echo $profile['id']; ?>" method="post">
+            <label for="status" class="form-control"><h4>Status:</h4></label>
+            <textarea name="text" rows="5" cols="100" class="" style="margin: 0px 0px 10px; width: 390px; height: 123px;"></textarea><br>
+            <input class="btn btn-primary" value="Post on your timeline" type="submit">
+        </form>
+      </div>
+  </div>
 
-	// } catch(Facebook\Exceptions\FacebookResponseException $e) {
-	// 	// When Graph returns an error
-	// 	echo 'Graph returned an error: ' . $e->getMessage();
-	// 	exit;
-	// } catch(Facebook\Exceptions\FacebookSDKException $e) {
-	// 	// When validation fails or other local issues
-	// 	echo 'Facebook SDK returned an error: ' . $e->getMessage();
-	// 	exit;
-	// }
-  ?>
+
+
 </div>
 
 
