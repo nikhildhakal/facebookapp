@@ -10,8 +10,8 @@ $fb = new Facebook\Facebook([
 
 
   $token = $_SESSION['facebook_access_token'];
-  $imageSelected = $_SESSION['IMAGE'];
-  $mark = "mark-$imageSelected.png";
+  $image = $_SESSION['IMAGE'];
+
   // echo $imageSelected;
   // $overlay = $_SESSION['overlay']; echo $overlay;
 
@@ -40,9 +40,9 @@ $fb = new Facebook\Facebook([
   //Attempt merging of the overlay with the profile image
 
   $jpeg = imagecreatefromjpeg('avatar/'.$profile['id'].'.jpg');
-  $png = imagecreatefrompng('overlay/'.$mark);
+  $png = imagecreatefrompng('overlay/'.$image);
   list($width, $height) = getimagesize('avatar/'.$profile['id'].'.jpg');
-  list($newwidth, $newheight) = getimagesize('overlay/'.$mark);
+  list($newwidth, $newheight) = getimagesize('overlay/'.$image);
   $out = imagecreatetruecolor($newwidth, $newheight);
   imagecopyresampled($out, $jpeg, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
   imagecopyresampled($out, $png, 0, 0, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
@@ -64,8 +64,9 @@ $fb = new Facebook\Facebook([
         <img src="output/<?php echo $profile['id']; ?>.jpg" alt="Campaign Image" width="400px" height="500px">
         <br>
         <form class="form" action="update.php?id=<?php echo $profile['id']; ?>" method="post">
-            <label for="status" class="form-control"><h4>Status:</h4></label>
-            <textarea name="text" rows="5" cols="100" class="" style="margin: 0px 0px 10px; width: 390px; height: 123px;"></textarea><br>
+            <br>
+            <textarea class="var" name="text" style="margin: 0px 0px 10px; width: 390px; height: 80px;"></textarea>
+            <br>
             <input class="btn btn-primary" value="Post on your timeline" type="submit">
         </form>
       </div>

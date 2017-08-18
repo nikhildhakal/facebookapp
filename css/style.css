@@ -44,6 +44,10 @@ body {
 	float:left;
 	box-shadow:-1px 3px 17px 0px #666;
 }
+.var {
+	margin-top : -15px;
+	border-top:none;
+}
 .button-wrapper .button{
 	margin:13px 0 10px 0;
 	width:30%;

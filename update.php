@@ -50,15 +50,14 @@ $fb = new Facebook\Facebook([
         ?>
 
   <div class="content" align="center">
-    <h4>Successfully updated your Status </h4>
+    <h4>Successfully updated your Status! </h4>
+    <a class="btn btn-info" href="<?php echo $link; ?>">Make Your Profile Picture</a><br><br>
+     OR <br> <br>
+     <a href="logout.php" class="btn btn-xs">Logout</a></h5>
     <hr>
     <img src="<?php echo $path; ?>" alt="Profile" width="400px" height="500px">
     <br>
-    <a href="<?php echo $link; ?>" class="btn btn-success">Make this Your Profile Picture</a>
-    <?php
-
-        // echo '<a class="button" target="_blank" href="http://www.facebook.com/photo?'.$fbid.'&type=1&makeprofile=1&makeuserprofile=1">Make Your Profile Picture</a>';
-    ?>
+<hr>
 
   </div>
 

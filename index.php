@@ -17,25 +17,48 @@ $permissions = ['email','publish_actions'];
 $loginUrl = $helper->getLoginUrl('http://localhost/facebook/login.php', $permissions);
 
 header("Location:". $loginUrl);
- } else{ ?>
-
+ }
+ else
+ {
+   ?>
+<?php if (isset($_FILES['file'])) {
+    // echo "<pre>";
+    // print_r($_FILES['file']);
+    // echo $_FILES['file']['name'];
+    $image_name = $_FILES['file']['name'];
+    $file_local = 'overlay/' . $image_name;
+  	$imgupload = move_uploaded_file($_FILES['file']['tmp_name'], $file_local);
+} else{ $image_name = "mark-1.png"; }?>
 <div class="content" align="center">
   <div class="start" align="center">
   <img src="img/campaign.png" alt="sample campaign image">
 </div> <br>
+<?php
+    // $myfile = "src/campaign.txt";
+    // $lines = file($myfile);
+    // foreach($lines as $line)
+    //   {
+    //     $var = explode(':', $line, 2);
+    //     $arr[$var[0]] = $var[1];
+    //   }
+    $dir = 'overlay';
+    $files = scandir($dir);
+    $filenames = array_diff($files , array('..','.'));
+    // print_r($filenames);
+    ?>
   <form class="" action="index.php" method="post">
     <div class="form-group">
       <label for="image"><h3>Select a Design and Click Start:</h3></label>
       <select class="form-control" name="image" style="width:400px; height:40px;">
-        <option value="1">I Want Directly Elected PM</option>
-        <option value="2">Happy New Year 2017</option>
-        <option value="3">Merry Christmas</option>
+        <?php foreach ($filenames as $key) { ?>
+        <option value="<?php echo $key; ?>"><?php echo str_replace('.png' , ' ' , $key); ?></option>
+      <?php } ?>
       </select>
       <br><br>
       <div id="designs" align="center">
-            <img class="design" src="overlay/mark-1.png" />
-            <img class="design" src="overlay/mark-2.png" />
-            <img class="design" src="overlay/mark-3.png" />
+        <?php foreach ($filenames as $key) {   ?>
+          <img class="design" src="overlay/<?php echo $key; ?>" />
+          <?php  } ?>
       </div>
     </div>
     <br>
