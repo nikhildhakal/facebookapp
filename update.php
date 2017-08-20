@@ -1,4 +1,4 @@
-<?php include_once('includes/header.php'); ?>
+
 <?php
 session_start();
 require( __DIR__.'/src/Facebook/autoload.php' );
@@ -11,7 +11,7 @@ $fb = new Facebook\Facebook([
 
 
   $token = $_SESSION['facebook_access_token'];
-  $text = htmlspecialchars($_POST['text']);
+  
   $path = $_SESSION['path'];
   $fbid = $_GET['id'];
   // echo $path;
@@ -19,7 +19,7 @@ $fb = new Facebook\Facebook([
 
   try {
 		// message must come from the user-end
-    $data = ['source' => $fb->fileToUpload($path), 'message' => $text];
+    $data = ['source' => $fb->fileToUpload($path),'caption' => 'Support the campaign by Sharing. Check out www.yubapost.com'];
 		$request = $fb->post('/me/photos', $data, $token);
     $response = $request->getGraphNode()->asArray();
     // $picture = $fb->get('/'.$fbid.'fields=link' , $token);
@@ -46,20 +46,5 @@ $fb = new Facebook\Facebook([
       // print_r($graphObject);
       $link =  $graphObject['link'];
       /* handle the result */
-
+      header("Location:" . $link);
         ?>
-
-  <div class="content" align="center">
-    <h4>Successfully updated your Status! </h4>
-    <a class="btn btn-info" href="<?php echo $link; ?>">Make Your Profile Picture</a><br><br>
-     OR <br> <br>
-     <a href="logout.php" class="btn btn-xs">Logout</a></h5>
-    <hr>
-    <img src="<?php echo $path; ?>" alt="Profile" width="400px" height="500px">
-    <br>
-<hr>
-
-  </div>
-
-
-  <?php include_once('includes/footer.php'); ?>

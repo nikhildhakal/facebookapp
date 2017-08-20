@@ -58,21 +58,14 @@ $fb = new Facebook\Facebook([
 <?php include_once('includes/header.php'); ?>
 
 <div class="content" align="center">
-  <div class="row">
-      <div class="col-md-6">
-        <h4>Your Picture is Ready</h4>
-        <img src="output/<?php echo $profile['id']; ?>.jpg" alt="Campaign Image" width="400px" height="500px">
-        <br>
-        <form class="form" action="update.php?id=<?php echo $profile['id']; ?>" method="post">
-            <br>
-            <textarea class="var" name="text" style="margin: 0px 0px 10px; width: 390px; height: 80px;"></textarea>
-            <br>
-            <input class="btn btn-primary" value="Post on your timeline" type="submit">
-        </form>
-      </div>
-  </div>
-
-
+  <h4>Successfully updated your Status! </h4>
+  <a class="btn btn-info" href="update.php">Make Your Profile Picture</a><br><br>
+   OR <br> <br>
+   <a href="logout.php" class="btn btn-xs">Logout</a></h5>
+  <hr>
+  <img src="<?php echo $path; ?>" alt="Profile" width="400px" height="500px">
+  <br>
+<hr>
 
 </div>
 
